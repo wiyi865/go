@@ -20,7 +20,7 @@ func square(in <-chan int, out chan<- int) {
 
 func do_print(in <-chan int) {
 	for result := range in {
-	fmt.Println(result)
+		fmt.Println(result)
 	}
 }
 

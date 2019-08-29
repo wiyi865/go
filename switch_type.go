@@ -5,7 +5,7 @@ import "fmt"
 func do(i interface{}) {
 	switch v := i.(type) {
 	case string:
-		fmt.Println("Is string!" ,v)
+		fmt.Println("Is string!", v)
 	case int:
 		fmt.Println("It is Map ", v)
 	case []int:

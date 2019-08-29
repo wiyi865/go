@@ -1,14 +1,17 @@
 package main
-"""
+
+/*"""
 从一个文件中拷贝内容到另外一个文件
 """
+*/
 
 import (
 	//"fmt"
-	"os"
-	"log"
 	"io"
+	"log"
+	"os"
 )
+
 func copyfile(fromfile, tofile string) error {
 	sfile, err := os.Open(fromfile)
 	if err != nil {
@@ -24,7 +27,7 @@ func copyfile(fromfile, tofile string) error {
 	return error
 }
 
-func main(){
+func main() {
 	filea := os.Args[1]
 	fileb := os.Args[2]
 	err := copyfile(filea, fileb)

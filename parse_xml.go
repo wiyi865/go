@@ -1,4 +1,5 @@
 package main
+
 /*
 golang中使用encoding/xml库解析xml文件
 /tmp/1.xml

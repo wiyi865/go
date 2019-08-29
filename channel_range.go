@@ -13,11 +13,11 @@ func main() {
 		}
 	}()
 	go func() {
-		for x :=range naturals {
+		for x := range naturals {
 			squares <- x * x
 		}
 	}()
-	for  y := range squares {
+	for y := range squares {
 		fmt.Println(y)
 	}
 }

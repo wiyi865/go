@@ -1,12 +1,12 @@
 package main
 
 import (
-	"net"
 	"fmt"
+	"net"
 )
 
-func main(){
-	ln ,err := net.Listen("tcp", ":8090")
+func main() {
+	ln, err := net.Listen("tcp", ":8090")
 	if err != nil {
 		fmt.Println(err)
 	}
