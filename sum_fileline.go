@@ -1,5 +1,3 @@
-package main
-
 /*
 读取/tmp/1.txt文件内容，并求和
 1
@@ -10,6 +8,7 @@ package main
 677
 需要注意的是读取每行结果为[]byte,转化为string再转化为Int,暂时不确定是不是正确的办法，当前已实现累计求和。
 */
+package main
 
 import (
 	"bufio"

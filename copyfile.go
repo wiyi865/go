@@ -1,9 +1,8 @@
-package main
-
 /*"""
 从一个文件中拷贝内容到另外一个文件
 """
 */
+package main
 
 import (
 	//"fmt"

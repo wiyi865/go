@@ -1,5 +1,3 @@
-package main
-
 /*
 golang中使用encoding/xml库解析xml文件
 /tmp/1.xml
@@ -10,6 +8,7 @@ golang中使用encoding/xml库解析xml文件
 	<common_redis_addr>10.10.98.99:6379</common_redis_addr>
 </server_config>
 */
+package main
 
 import (
 	"encoding/xml"

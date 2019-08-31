@@ -1,4 +1,3 @@
-package main
 /*
 /tmp/1.txt内容为:
 {
@@ -7,6 +6,7 @@ package main
 	"Sex":"女"
 }
 */
+package main
 import (
 	"fmt"
 	"log"
