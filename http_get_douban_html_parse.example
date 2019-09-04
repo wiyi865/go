@@ -1,0 +1,56 @@
+package "douban"
+import ""
+func main(){
+}
+//抓取豆瓣小组信息，并解析标题，和url代码示例:
+//参考摘抄来源：https://github.com/tophubs/TopList
+//依赖三方库：
+//"github.com/PuerkitoBio/goquery"
+//对于网页编码不是使用uft8的可能需要依赖
+//"
+//https://github.com/PuerkitoBio/goquery/wiki/Tips-and-tricks中的：
+//go get -u github.com/djimenez/iconv-go
+//"
+// 豆瓣
+func (spider Spider) GetDouBan() []map[string]interface{} {
+	url := "https://www.douban.com/group/explore"
+	timeout := time.Duration(5 * time.Second) //超时时间5s
+	client := &http.Client{
+		Timeout: timeout,
+	}
+	var Body io.Reader
+	request, err := http.NewRequest("GET", url, Body)
+	if err != nil {
+		fmt.Println("抓取" + spider.DataType + "失败")
+		return []map[string]interface{}{}
+	}
+	request.Header.Add("User-Agent", `Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Mobile Safari/537.36`)
+	request.Header.Add("Upgrade-Insecure-Requests", `1`)
+	request.Header.Add("Referer", `https://www.douban.com/group/explore`)
+	request.Header.Add("Host", `www.douban.com`)
+	res, err := client.Do(request)
+
+	if err != nil {
+		fmt.Println("抓取" + spider.DataType + "失败")
+		return []map[string]interface{}{}
+	}
+	defer res.Body.Close()
+	//str,_ := ioutil.ReadAll(res.Body)
+	//fmt.Println(string(str))
+	var allData []map[string]interface{}
+	document, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		fmt.Println("抓取" + spider.DataType + "失败")
+		return []map[string]interface{}{}
+	}
+	document.Find(".channel-item").Each(func(i int, selection *goquery.Selection) {
+		url, boolUrl := selection.Find("h3 a").Attr("href")
+		text := selection.Find("h3 a").Text()
+		if boolUrl {
+			allData = append(allData, map[string]interface{}{"title": text, "url": url})
+		}
+	})
+	return allData
+}
+
+
